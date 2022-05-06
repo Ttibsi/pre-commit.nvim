@@ -1,5 +1,6 @@
 -- :lua require("precommit").PreCommit()
 local function PreCommit()
+    local cmd = "pre-commit run --files %"
  
     -- Check if pre-commit is installed
         -- If not, give user an error
@@ -15,8 +16,12 @@ local function PreCommit()
     vim.api.nvim_command('write')
 
     -- Open a new vertical split
+    vim.cmd[[ 85vsplit ]]
+
     -- Run pre-commit in the new split and display output
         -- ideally with colour
+    vim.api.nvim_call_function('termopen', {cmd})
+
     -- Reload buffer if needed
 end
 
