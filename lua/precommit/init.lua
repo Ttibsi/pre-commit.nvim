@@ -12,6 +12,8 @@ local function PreCommit()
     end
 
     -- Save current buffer
+    vim.api.nvim_command('write')
+
     -- Open a new vertical split
     -- Run pre-commit in the new split and display output
         -- ideally with colour
