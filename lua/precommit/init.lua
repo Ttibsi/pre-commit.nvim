@@ -19,8 +19,10 @@ local function PreCommit()
 	vim.cmd([[ 85vsplit ]])
 
 	-- Run pre-commit in the new split and display output
-	vim.api.nvim_call_function("termopen ", { cmd })
+	vim.api.nvim_command("terminal " .. cmd)
 
+    -- Move focus back
+ 
 	-- Reload buffer if needed
 	vim.api.nvim_command("e %")
 end
