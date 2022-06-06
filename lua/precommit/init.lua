@@ -8,8 +8,6 @@ local function PreCommit()
 		print("Pre-commit is not installed")
 	elseif os.execute("git ls-files | grep pre-commit") == 256 then
 		print("No pre-commit-config found")
-	else
-		print("hello pre-commit")
 	end
 
 	-- Save current buffer
@@ -21,10 +19,12 @@ local function PreCommit()
 	-- Run pre-commit in the new split and display output
 	vim.api.nvim_command("terminal " .. cmd)
 
-    -- Move focus back
- 
 	-- Reload buffer if needed
+	vim.cmd("wincmd h")
 	vim.api.nvim_command("e %")
+
+	-- Focus on pre-commit term split again
+	vim.cmd("wincmd l")
 end
 
 return {
