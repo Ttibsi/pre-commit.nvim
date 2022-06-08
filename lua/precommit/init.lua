@@ -20,11 +20,11 @@ local function PreCommit()
 	vim.api.nvim_command("terminal " .. cmd)
 
 	-- Reload buffer if needed
-	vim.cmd("wincmd h")
-	vim.api.nvim_command("e %")
+	vim.cmd("exe 1 .. 'wincmd w'")
+	vim.api.nvim_command("e!")
 
-	-- Focus on pre-commit term split again
-	vim.cmd("wincmd l")
+	-- Focus on pre-commit term split again so the user can exit
+	vim.cmd("exe 2 .. 'wincmd w'")
 end
 
 return {
