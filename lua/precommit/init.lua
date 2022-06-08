@@ -27,6 +27,8 @@ local function PreCommit()
 	vim.cmd("exe 2 .. 'wincmd w'")
 end
 
-return {
-	PreCommit = PreCommit,
-}
+vim.api.nvim_create_user_command(
+	"Precommit",
+	'require("precommit").PreCommit()',
+	{}
+)
