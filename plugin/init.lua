@@ -2,8 +2,4 @@
 -- Create commands or keymaps here
 
 --vim.keymap.set('n', '<leader>l', ':lua require("precommit").foo()<CR>')
-vim.api.nvim_create_user_command(
-	"Precommit",
-	"lua require('precommit').foo()",
-	{}
-)
+vim.api.nvim_create_user_command("Precommit", "lua require('precommit').execute()", {})
