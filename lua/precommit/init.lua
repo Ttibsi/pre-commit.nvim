@@ -1,9 +1,5 @@
 local M = {}
 
-M.foo = function()
-	print("3")
-end
-
 M.execute = function()
 	vim.api.nvim_command("write")
 	local filename = vim.fn.expand("%")
