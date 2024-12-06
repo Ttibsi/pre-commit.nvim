@@ -18,8 +18,7 @@ M.execute = function()
 			end
 		end,
 	})
-
-	--TODO: Reload buffer
+	vim.cmd("edit")
 end
 
 return M
