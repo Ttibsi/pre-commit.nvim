@@ -29,7 +29,8 @@ local function center_width(width)
 	return math.floor((vim.o.columns - width) / 2)
 end
 
-local function set_local_keymaps(win, buf)
+---@param buf integer
+local function set_local_keymaps(buf)
 	vim.keymap.set("n", "q", quit_map(), {
 		silent = true,
 		buffer = buf,
@@ -42,9 +43,8 @@ local function set_local_keymaps(win, buf)
 	})
 end
 
----@param win integer
 ---@param buf integer
-local function set_local_options(win, buf)
+local function set_local_options(buf)
 	vim.api.nvim_set_option_value("filetype", "precommit", { buf = buf })
 	-- or
 	-- vim.api.nvim_set_option_value("filetype", "precommit", { scope = "local" })
@@ -87,10 +87,9 @@ function M.execute()
 
 			local buf = vim.api.nvim_create_buf(false, true)
 			vim.api.nvim_buf_set_lines(buf, 0, -1, true, data)
-			local opts = gen_window_opts()
-			local win = vim.api.nvim_open_win(buf, true, opts)
-			set_local_keymaps(win, buf)
-			set_local_options(win, buf)
+			vim.api.nvim_open_win(buf, true, gen_window_opts())
+			set_local_keymaps(buf)
+			set_local_options(buf)
 		end,
 	})
 end
